@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400&display=swap');
+body{
+    background: #F7F8FA;
+    padding: 0;
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.side_bar{
+    width: 250px;
+    height: 720px;
+    background: #FFFFFF;
+    float: left;
+    position: fixed;
+}
+
+.nav{
+    width: 100%;
+    height: 645px;
+    justify-content: center;
+    font-size: medium;
+    color: #BABABC;
+}
+
+.section_name{
+    margin-left: 65px;
+    margin-top: 300px;
+    color: #336CF9;
+    float: bottom;
+}
+
+.info{
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.logo{
+    margin-left: 65px;
+    margin-bottom: 10px;
+    font-family: 'Prosto One', cursive; 
+}
+.name{
+    width: 1290px;
+    height: 75px;
+    background: #FFFFFF;
+    margin-left: 16%;
+    position: fixed;
+}
+
+.main{
+    width: 1290px;
+    height: 645px;
+    margin-left: 16%;
+    padding-top: 75px;
+}
+
+.top_crypto{
+    width: 1290px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.top_position{
+    float: left;
+    width: 200px;
+    height: 75px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    margin-left: 8%;
+    margin-top: 40px;
+}
+
+.graph{
+    width: 1115px;
+    height: 300px;
+    border-radius: 25px;
+    background-color: #FFF;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.to_do_list{
+    width: 1115px;
+    height: 150px;
+    border-radius: 25px;
+    background-color: #FFF;
+    margin-top: 25px;
+    margin-left: 100px;
+}

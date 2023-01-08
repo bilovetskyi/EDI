@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="side_bar">
-        <h1 class="logo">Crypto</h1>
+        <h1 class="logo">TechWorld</h1>
         <div class="nav">
             <b>
-            <div class="section_name_active">
-                Section name
+            <div class="btn__wrapper">
+                <button class="btn active" id="btn-main">
+                    Statistics
+                </button>
             </div>
-            <div class="section_name_nonactive">
-                Info
+            <div class="btn__wrapper">
+                <button class="btn" id="btn-info">
+                    About us
+                </button>
             </div>
-            <div class="section_name_nonactive">
-                Another section name
+            <div class="btn__wrapper">
+                <button class="btn" id="btn-full">
+                    Full information about the products
+                </button>
             </div>
             </b>
         </div>
     </div>
-    <div class="name">
-        <b><h2>Section name</h2></b>
-    </div>
-    <section class="main">  
-        <div class="top_crypto">
-            <div class="top_position">
-                <h3>Name</h3>
+    <main>
+        <section class="section main" id="main">
+            <div class="name">
+                <b><h2 class="main_name">Statistics</h2></b>
             </div>
-            <div class="top_position">
-                <h3>Name</h3>
+    
+            <div class="section__content">
+                <div class="top_crypto">
+                    <div class="top_position">
+                        <h3>Amount of orders has increased on <span>30%</span></span></h3>
+                    </div>
+                    <div class="top_position">
+                        <h3>Aomunt of positive feedbacks has increased on <span>10%</span></span></h3>
+                    </div>
+                </div>
+                <div class="graph">
+                    <canvas id="productsChart"></canvas>
+                    <div>
+                    </div>
+                    <canvas id="deliveryChart"></canvas>
+                    <div>
+                    </div>
+                </div>
             </div>
-            <div class="top_position">
-                <h3>Name</h3>
+        </section>
+    
+        <section class="section info" id="info">
+            <div class="name">
+                <b><h2 class="info_name">About us</h2></b>
             </div>
-            <div class="top_position">
-                <h3>Name</h3>
-            </div>  
-        </div>
-        <div class="graph">
-
-        </div>
-        <div class="to_do_list">
-
-        </div>
-    </section>
-
+    
+            <div class="section__content">
+                <div class="about_us">
+                    <div class="section1">
+                        <h3>Welcome to the TechWorld. We are number one in satisfying the clients. Nobody will leave unsatisfied from our store! Be sure about it</h3>
+                    </div>
+                    <div class="section2"><p>Percent of</p><p>satisfied clients:</p> <p><h2>100%</h2></p></div>
+                </div>
+                
+                <div class="about_us">
+                    <div class="section3"><p>The truth</p><p>of the statistics:</p><p><h2>100%</h2></p></div>
+                    <div class="section4"><h3>This statistics is 100% true. Believe me. Nobody has left our store unsatisfied since our opening. Trust me!</h3></div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <section class="section full" id="full">
+            <div class="name">
+                <b><h2 class="full_info_name">Full information about the products</h2></b>
+            </div>
+    
+            <div class="section__content">
+                <div class="container">
+                    <div class="table">
+                        
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    </main>
 </body>
+
+<script src="js/script.js"></script>
 </html>

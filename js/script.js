@@ -1,3 +1,8 @@
+const urls = ['tech-1.json', 'tech-2.json', 'tech-3.json']
+currentUrl = urls[0]
+apiUrl = `https://api.github.com/repos///contents/${currentUrl}`
+
+
 const hideAllSections = () => {
     const sections = document.getElementsByClassName('section')
 
@@ -44,8 +49,9 @@ const setEventListeners = () => {
     })
 }
 
-const getData = () => {
+const getData = () => {e
     $.getJSON( 'https://api.mockaroo.com/api/792bcfb0?count=100&key=4170e6a0', (data) => {
+        $('.table').
         $.each( data, ( key, val ) => {
             $(".table").append(`
                 <div class="card">

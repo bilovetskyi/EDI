@@ -69,18 +69,19 @@ button:hover{
     font-size: 14px;
     color: #fff;
     border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-.btn-group .btn.green {
+.btn-group .green {
     background-color: palegreen;
 }
 
-.btn-group .btn.yellow {
+.btn-group .yellow {
     background-color: yellow;
 }
 
-.btn-group .btn.red {
-    background-color: ;
+.btn-group .red {
+    background-color: lightcoral;
 }
 
 .logo{

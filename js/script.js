@@ -1,8 +1,4 @@
 const urls = ['tech-1.json', 'tech-2.json', 'tech-3.json']
-
-const getUrl = (fileName) => {
-    return `https://api.github.com/repos/bilovetskyi/EDI/contents/${fileName}`
-}
  
 const hideAllSections = () => {
     const sections = document.getElementsByClassName('section')
@@ -50,46 +46,60 @@ const setNavbarEventListeners = () => {
     })
 }
 
-const getData = (url) => {
-    $.getJSON( url, (data) => {
-        $.each( data, ( key, val ) => {
-            $(".table").append(`
-                <div class="card">
-                    <div class="row">
-                        <div class="title">Name: </div>
-                        <div class="value">${val.name}</div>
-                    </div>
+const getData = async (fileName) => {
+    let data = await fetch(`https://api.github.com/repos/bilovetskyi/EDI/contents/api/${fileName}?ref=main`)
+        .then (d => d.json ())
+        .then (d =>
+            fetch (
+                `https://api.github.com/repos/bilovetskyi/EDI/git/blobs/${d.sha}`
+            )
+        )
+        .then (d => d.json ())
+        .then (d => JSON.parse (atob (d.content)));
+    
+    const table = document.getElementsByClassName('table')[0]
+    table.innerHTML = ''
 
-                    <div class="row">
-                        <div class="title">Number: </div>
-                        <div class="value">${val.number}</div>
-                    </div>
-
-                    ${val.postal_code_of_delivery
-                        ? `
-                            <div class="row">
-                                <div class="title">Postal code: </div>
-                                <div class="value">${val.postal_code_of_delivery}</div>
-                            </div>
-                        `
-                        : ``
-                    }
-
-                    <div class="row">
-                        <div class="title">Delivery opportunity: </div>
-                        <div class="value">${val.delivery_opportunity}</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="title">Price: </div>
-                        <div class="value">${val.price}</div>
-                    </div>
+    data.forEach(item => {
+        let newElement = document.createElement('div')
+        newElement.innerHTML = `
+            <div class="card">
+                <div class="row">
+                    <div class="title">Name: </div>
+                    <div class="value">${item.name}</div>
                 </div>
-            `)
-        });
 
-        setCharts(data)
-    }); 
+                <div class="row">
+                    <div class="title">Number: </div>
+                    <div class="value">${item.number}</div>
+                </div>
+
+                ${item.postal_code_of_delivery
+                    ? `
+                        <div class="row">
+                            <div class="title">Postal code: </div>
+                            <div class="value">${item.postal_code_of_delivery}</div>
+                        </div>
+                    `
+                    : ``
+                }
+
+                <div class="row">
+                    <div class="title">Delivery opportunity: </div>
+                    <div class="value">${item.delivery_opportunity}</div>
+                </div>
+
+                <div class="row">
+                    <div class="title">Price: </div>
+                    <div class="value">${item.price}</div>
+                </div>
+            </div>
+        `
+
+        table.appendChild(newElement)
+    });
+
+    // setCharts(data)
 }
 
 const countTypes = (data) => {
@@ -173,7 +183,7 @@ const setDataEventListeners = () => {
     urls.forEach((url, index) => {
         $(`#btn-dataset-${index + 1}`).get(0)
         .addEventListener('click', (e) => {
-            getData(getUrl(urls[index]))
+            getData(urls[index])
         })
     })
 }
@@ -181,7 +191,7 @@ const setDataEventListeners = () => {
 const init = () => {
     hideAllSections()
     showSection('main')
-    getData(getUrl('tech-1.json'))
+    getData('tech-1.json')
     setNavbarEventListeners()
     setDataEventListeners()
 }

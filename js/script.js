@@ -65,37 +65,36 @@ const getData = async (fileName) => {
 
     data.forEach(item => {
         let newElement = document.createElement('div')
+        newElement.classList.add('card')
         newElement.innerHTML = `
-            <div class="card">
-                <div class="row">
-                    <div class="title">Name: </div>
-                    <div class="value">${item.name}</div>
-                </div>
+            <div class="row">
+                <div class="title">Name: </div>
+                <div class="value">${item.name}</div>
+            </div>
 
-                <div class="row">
-                    <div class="title">Number: </div>
-                    <div class="value">${item.number}</div>
-                </div>
+            <div class="row">
+                <div class="title">Number: </div>
+                <div class="value">${item.number}</div>
+            </div>
 
-                ${item.postal_code_of_delivery
-                    ? `
-                        <div class="row">
-                            <div class="title">Postal code: </div>
-                            <div class="value">${item.postal_code_of_delivery}</div>
-                        </div>
-                    `
-                    : ``
-                }
+            ${item.postal_code_of_delivery
+                ? `
+                    <div class="row">
+                        <div class="title">Postal code: </div>
+                        <div class="value">${item.postal_code_of_delivery}</div>
+                    </div>
+                `
+                : ``
+            }
 
-                <div class="row">
-                    <div class="title">Delivery opportunity: </div>
-                    <div class="value">${item.delivery_opportunity}</div>
-                </div>
+            <div class="row">
+                <div class="title">Delivery opportunity: </div>
+                <div class="value">${item.delivery_opportunity}</div>
+            </div>
 
-                <div class="row">
-                    <div class="title">Price: </div>
-                    <div class="value">${item.price}</div>
-                </div>
+            <div class="row">
+                <div class="title">Price: </div>
+                <div class="value">${item.price}</div>
             </div>
         `
 
@@ -106,20 +105,15 @@ const getData = async (fileName) => {
 }
 
 const countTypes = (data) => {
-    let items = [
-        {label: 'Coffee maker', count: 0},
-        {label: 'Blender', count: 0},
-        {label: 'Toaster', count: 0},
-        {label: 'Microwave', count: 0},
-        {label: 'Rice cooke', count: 0},
-        {label: 'Kettle', count: 0},
-        {label: 'Water purifier', count: 0},
-        {label: 'Oven', count: 0},
-        {label: 'Dishwasher', count: 0},
-        {label: 'Refrigerator', count: 0},
-    ]
-
+    let items = []
     let labels = []
+
+    data.forEach(item => labels.push(item.name))
+
+    labels = [...new Set(labels)]
+
+    labels.forEach(label => items.push({label: label, count: 0}))
+
     let counts = []
     let countDelivery = {available: 0, notAvailable: 0}
 
@@ -134,7 +128,6 @@ const countTypes = (data) => {
     })
 
     items.forEach(item => {
-        labels.push(item.label)
         counts.push(item.count)
     })
 
@@ -183,7 +176,7 @@ const setCharts = (data) => {
         }]
         },
         options: {
-
+            maintainAspectRatio: false
         }
     });
 }

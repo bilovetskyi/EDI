@@ -1,4 +1,7 @@
 const urls = ['tech-1.json', 'tech-2.json', 'tech-3.json']
+
+let productsChart
+let deliveryChart
  
 const hideAllSections = () => {
     const sections = document.getElementsByClassName('section')
@@ -139,21 +142,18 @@ const countTypes = (data) => {
 }
 
 const setCharts = (data) => {
-    const wrapperProducts = document.getElementById('productsChartWrapper');
-    const wrapperDelivery = document.getElementById('deliveryChartWrapper');
-
-    wrapperProducts.innerHTML = ''
-    wrapperDelivery.innerHTML = ''
-
-    const ctxProducts = document.createElement('canvas')
-    const ctxDelivery = document.createElement('canvas')
-
-    wrapperProducts.appendChild(ctxProducts)
-    wrapperDelivery.appendChild(ctxDelivery)
+    $("#productsChart").remove()
+    $("#deliveryChart").remove()
 
     const [labels, counts, countDelivery] = countTypes(data)
 
-    new Chart(ctxProducts, {
+    $("#productsChartWrapper").append('<canvas id="productsChart"></canvas>')
+    $("#deliveryChartWrapper").append('<canvas id="deliveryChart"></canvas>')
+
+    const ctxProducts = document.querySelector('#productsChart')
+    const ctxDelivery = document.querySelector('#deliveryChart')
+
+    productsChart = new Chart(ctxProducts, {
         type: 'bar',
         data: {
         labels: labels,
@@ -170,9 +170,9 @@ const setCharts = (data) => {
             }
         }
         }
-    });
+    })
 
-    new Chart(ctxDelivery, {
+    deliveryChart = new Chart(ctxDelivery, {
         type: 'doughnut',
         data: {
         labels: ['Delivery available', 'Delivery not available'],

@@ -1,8 +1,9 @@
 const urls = ['tech-1.json', 'tech-2.json', 'tech-3.json']
-currentUrl = urls[0]
-apiUrl = `https://api.github.com/repos///contents/${currentUrl}`
 
-
+const getUrl = (fileName) => {
+    return `https://api.github.com/repos/bilovetskyi/EDI/contents/${fileName}`
+}
+ 
 const hideAllSections = () => {
     const sections = document.getElementsByClassName('section')
 
@@ -16,7 +17,7 @@ const showSection = (id) => {
     section.classList.remove('hidden')
 }
 
-const setEventListeners = () => {
+const setNavbarEventListeners = () => {
     const btnMain = document.getElementById('btn-main')
     const btnInfo = document.getElementById('btn-info')
     const btnFull = document.getElementById('btn-full')
@@ -49,9 +50,8 @@ const setEventListeners = () => {
     })
 }
 
-const getData = () => {e
-    $.getJSON( 'https://api.mockaroo.com/api/792bcfb0?count=100&key=4170e6a0', (data) => {
-        $('.table').
+const getData = (url) => {
+    $.getJSON( url, (data) => {
         $.each( data, ( key, val ) => {
             $(".table").append(`
                 <div class="card">
@@ -133,7 +133,6 @@ const setCharts = (data) => {
     const ctxDelivery = document.getElementById('deliveryChart');
 
     const [labels, counts, countDelivery] = countTypes(data)
-    console.log(countDelivery)
 
     new Chart(ctxProducts, {
         type: 'bar',
@@ -170,11 +169,21 @@ const setCharts = (data) => {
     });
 }
 
+const setDataEventListeners = () => {
+    urls.forEach((url, index) => {
+        $(`#btn-dataset-${index + 1}`).get(0)
+        .addEventListener('click', (e) => {
+            getData(getUrl(urls[index]))
+        })
+    })
+}
+
 const init = () => {
     hideAllSections()
     showSection('main')
-    setEventListeners()
-    getData()
+    getData(getUrl('tech-1.json'))
+    setNavbarEventListeners()
+    setDataEventListeners()
 }
 
 init()

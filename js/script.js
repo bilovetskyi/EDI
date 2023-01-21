@@ -99,7 +99,7 @@ const getData = async (fileName) => {
         table.appendChild(newElement)
     });
 
-    // setCharts(data)
+    setCharts(data)
 }
 
 const countTypes = (data) => {
@@ -139,8 +139,17 @@ const countTypes = (data) => {
 }
 
 const setCharts = (data) => {
-    const ctxProducts = document.getElementById('productsChart');
-    const ctxDelivery = document.getElementById('deliveryChart');
+    const wrapperProducts = document.getElementById('productsChartWrapper');
+    const wrapperDelivery = document.getElementById('deliveryChartWrapper');
+
+    wrapperProducts.innerHTML = ''
+    wrapperDelivery.innerHTML = ''
+
+    const ctxProducts = document.createElement('canvas')
+    const ctxDelivery = document.createElement('canvas')
+
+    wrapperProducts.appendChild(ctxProducts)
+    wrapperDelivery.appendChild(ctxDelivery)
 
     const [labels, counts, countDelivery] = countTypes(data)
 
